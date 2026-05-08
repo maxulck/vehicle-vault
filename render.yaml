@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: vehicle-vault-api
+    runtime: node
+    plan: free
+    buildCommand: corepack enable && corepack prepare pnpm@10.24.0 --activate && pnpm install --no-frozen-lockfile
+    startCommand: pnpm --filter server start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: CLIENT_URL
+        sync: false
+      - key: SEED_DEMO_USER
+        value: true
+      - key: DEMO_USER_NAME
+        value: Usuario Demo
+      - key: DEMO_USER_EMAIL
+        value: demo@vehiclevault.dev
+      - key: DEMO_USER_PASSWORD
+        value: Demo1234

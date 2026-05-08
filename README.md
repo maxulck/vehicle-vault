@@ -113,13 +113,37 @@ Configuracion recomendada en Netlify:
 - Base directory: vacio o raiz del repositorio
 - Environment variable: `VITE_API_URL=https://url-de-tu-backend/api`
 
-Para el backend Express con MongoDB, usa un servicio como Render, Railway, Fly.io o una VPS. En ese servicio configura estas variables:
+## Deploy del backend en Render
+
+El backend Express esta preparado para Render con `render.yaml`.
+
+Pasos recomendados:
+
+1. Crea un nuevo `Web Service` en Render desde el repositorio de GitHub.
+2. Usa el servicio `vehicle-vault-api` detectado por `render.yaml`.
+3. Agrega estas variables de entorno en Render:
 
 - `MONGODB_URI`
 - `JWT_SECRET`
 - `JWT_EXPIRES_IN`
 - `PORT`
 - `CLIENT_URL=https://tu-app.netlify.app`
+
+Render asigna `PORT` automaticamente, asi que puedes omitirlo si Render no te lo pide.
+
+Cuando Render entregue la URL del backend, por ejemplo:
+
+```text
+https://vehicle-vault-api.onrender.com
+```
+
+vuelve a Netlify y cambia:
+
+```env
+VITE_API_URL=https://vehicle-vault-api.onrender.com/api
+```
+
+Despues haz un nuevo deploy en Netlify.
 
 ## Estructura
 
