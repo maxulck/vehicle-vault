@@ -14,7 +14,7 @@ Vehicle Vault es una app full-stack para administrar un inventario de vehiculos.
 ## Requisitos
 
 - Node.js 20+
-- pnpm 9+
+- pnpm 10+
 - MongoDB local o una base MongoDB Atlas
 
 ## Instalacion
@@ -62,7 +62,7 @@ MONGODB_URI=mongodb+srv://usuario:password@cluster.mongodb.net/vehicle_vault?ret
 JWT_SECRET=una-clave-larga-y-segura
 JWT_EXPIRES_IN=7d
 PORT=4000
-CLIENT_URL=https://tu-app.vercel.app
+CLIENT_URL=https://tu-app.netlify.app
 SEED_DEMO_USER=true
 DEMO_USER_NAME=Usuario Demo
 DEMO_USER_EMAIL=demo@vehiclevault.dev
@@ -102,16 +102,15 @@ pnpm start
 - Busqueda y estadisticas rapidas
 - Modelos separados para usuarios y vehiculos
 
-## Deploy
+## Deploy en Netlify
 
-El frontend esta preparado para Vercel con `vercel.json`.
+El frontend esta preparado para Netlify con `netlify.toml`.
 
-Configuracion recomendada en Vercel:
+Configuracion recomendada en Netlify:
 
-- Framework preset: `Vite`
-- Build command: `pnpm --filter client build`
-- Output directory: `client/dist`
-- Install command: `pnpm install --no-frozen-lockfile`
+- Build command: `corepack enable && corepack prepare pnpm@10.24.0 --activate && pnpm install --no-frozen-lockfile && pnpm --filter client build`
+- Publish directory: `client/dist`
+- Base directory: vacio o raiz del repositorio
 - Environment variable: `VITE_API_URL=https://url-de-tu-backend/api`
 
 Para el backend Express con MongoDB, usa un servicio como Render, Railway, Fly.io o una VPS. En ese servicio configura estas variables:
@@ -120,7 +119,7 @@ Para el backend Express con MongoDB, usa un servicio como Render, Railway, Fly.i
 - `JWT_SECRET`
 - `JWT_EXPIRES_IN`
 - `PORT`
-- `CLIENT_URL=https://tu-app.vercel.app`
+- `CLIENT_URL=https://tu-app.netlify.app`
 
 ## Estructura
 

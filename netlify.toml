@@ -1,0 +1,12 @@
+[build]
+  command = "corepack enable && corepack prepare pnpm@10.24.0 --activate && pnpm install --no-frozen-lockfile && pnpm --filter client build"
+  publish = "client/dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+  PNPM_VERSION = "10.24.0"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
