@@ -9,7 +9,7 @@ export async function connectDatabase() {
 
   if (uri.includes("127.0.0.1") || uri.includes("localhost")) {
     console.warn(
-      "MONGODB_URI is pointing to local MongoDB. If you use Atlas, update server/.env, not .env.example."
+      "MONGODB_URI is pointing to local MongoDB. If you use Atlas, update server/.env."
     );
   }
 

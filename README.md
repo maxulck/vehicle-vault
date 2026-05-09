@@ -21,12 +21,9 @@ Vehicle Vault es una app full-stack para administrar un inventario de vehiculos.
 
 ```bash
 pnpm install
-cp .env.example server/.env
 ```
 
-Edita `server/.env` con tu conexion real de MongoDB y un `JWT_SECRET` seguro.
-
-Importante: `.env.example` es solo una plantilla para subir a GitLab. El archivo que usa el backend cuando ejecutas `pnpm dev` es `server/.env`.
+Edita `server/.env` con tu conexion real de MongoDB y un `JWT_SECRET` seguro. Ese archivo es local y no se sube al repositorio.
 
 ## Desarrollo
 
@@ -37,37 +34,19 @@ pnpm dev
 - Frontend: `http://localhost:5173`
 - Backend: `http://localhost:4000/api`
 
-## Variables de entorno
+## Variables de entorno locales
 
-En `server/.env` debes poner la conexion de MongoDB en `MONGODB_URI`.
+El unico archivo `.env` local que usa el proyecto es `server/.env`. Debe tener estas variables:
 
-Ejemplo local:
-
-```env
-MONGODB_URI=mongodb://127.0.0.1:27017/vehicle_vault
-JWT_SECRET=una-clave-larga-y-segura
-JWT_EXPIRES_IN=7d
-PORT=4000
-CLIENT_URL=http://localhost:5173
-SEED_DEMO_USER=true
-DEMO_USER_NAME=Usuario Demo
-DEMO_USER_EMAIL=demo@vehiclevault.dev
-DEMO_USER_PASSWORD=Demo1234
-```
-
-Ejemplo MongoDB Atlas:
-
-```env
-MONGODB_URI=mongodb+srv://usuario:password@cluster.mongodb.net/vehicle_vault?retryWrites=true&w=majority
-JWT_SECRET=una-clave-larga-y-segura
-JWT_EXPIRES_IN=7d
-PORT=4000
-CLIENT_URL=https://tu-app.netlify.app
-SEED_DEMO_USER=true
-DEMO_USER_NAME=Usuario Demo
-DEMO_USER_EMAIL=demo@vehiclevault.dev
-DEMO_USER_PASSWORD=Demo1234
-```
+- `MONGODB_URI`
+- `JWT_SECRET`
+- `JWT_EXPIRES_IN`
+- `PORT`
+- `CLIENT_URL`
+- `SEED_DEMO_USER`
+- `DEMO_USER_NAME`
+- `DEMO_USER_EMAIL`
+- `DEMO_USER_PASSWORD`
 
 Usuario demo incluido:
 
@@ -78,11 +57,7 @@ Contrasena: Demo1234
 
 Si no quieres que se cree el usuario demo, cambia `SEED_DEMO_USER=false`.
 
-En `client/.env`, solo si necesitas cambiar la URL de la API:
-
-```env
-VITE_API_URL=http://localhost:4000/api
-```
+El frontend usa `http://localhost:4000/api` por defecto en desarrollo. Para Netlify, configura `VITE_API_URL` directamente en las variables de entorno del panel de Netlify.
 
 ## Scripts utiles
 
